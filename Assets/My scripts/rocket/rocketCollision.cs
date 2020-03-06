@@ -26,7 +26,6 @@ public class rocketCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject);
 
         //start anim
         launchAnim(collision.contacts[0]);

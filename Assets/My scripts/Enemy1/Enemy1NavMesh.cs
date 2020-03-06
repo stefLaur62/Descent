@@ -14,12 +14,18 @@ public class Enemy1NavMesh : MonoBehaviour
     private void Update()
     {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
-
+        if (agent.pathStatus != NavMeshPathStatus.PathComplete)
+        {
+            agent.isStopped=true;
+        } else
+        {
+            agent.isStopped=false;
+        }
         float dist = Vector3.Distance(agent.transform.position, goal.position);
         if (dist < 5)
         {
             agent.destination = agent.transform.position;
-        } 
+        }
         else
         {
             agent.destination = goal.position;

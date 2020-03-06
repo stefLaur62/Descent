@@ -11,8 +11,13 @@ public class rocketFire : MonoBehaviour
     public GameObject left_spawn;
     public GameObject right_spawn;
 
+    private AudioSource audio;
+    public AudioClip audio2;
+
     void Start()
     {
+        audio = GetComponent<AudioSource>();
+        audio.clip = audio2;
     }
 
     void Update()
@@ -36,6 +41,8 @@ public class rocketFire : MonoBehaviour
 
             GameObject rocket_right = Instantiate(rocket, right_spawn.transform.position, right_spawn.transform.rotation);
             rocket_right.transform.Rotate(new Vector3(90, 0, 0));
+
+            audio.Play();
             WeaponWasFired();
         }
     }

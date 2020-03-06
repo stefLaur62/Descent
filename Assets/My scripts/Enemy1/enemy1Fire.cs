@@ -28,15 +28,12 @@ public class enemy1Fire : MonoBehaviour
     }
     private void SpawnMissile()
     {
-        if (Input.GetKey(KeyCode.Space))
+        float dist = Vector3.Distance(transform.position, ship.position);
+        if (dist < 10)
         {
-            float dist = Vector3.Distance(transform.position, ship.position);
-            if (dist < 10)
-            {
-                GameObject shot = Instantiate(rocket, spawn.transform.position, spawn.transform.rotation);
-                shot.transform.Rotate(new Vector3(90, 0, 0));
-                WeaponWasFired();
-            }
+            GameObject shot = Instantiate(rocket, spawn.transform.position, spawn.transform.rotation);
+            shot.transform.Rotate(new Vector3(90, 0, 0));
+            WeaponWasFired();
         }
     }
 
