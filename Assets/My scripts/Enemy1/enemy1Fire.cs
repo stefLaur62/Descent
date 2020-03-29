@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class enemy1Fire : MonoBehaviour
 {
-    private float fireRate = 0.4f;
-    private float nextFire = -1f;
+    private float fireRate = 1.5f;
+    private float nextFire = -2f;
 
     public GameObject rocket;
     public GameObject spawn;
     public Transform ship;
+    public Transform alien;
     void Start()
     {
     }
@@ -31,8 +32,9 @@ public class enemy1Fire : MonoBehaviour
         float dist = Vector3.Distance(transform.position, ship.position);
         if (dist < 10)
         {
-            GameObject shot = Instantiate(rocket, spawn.transform.position, spawn.transform.rotation);
-            shot.transform.Rotate(new Vector3(90, 0, 0));
+            transform.LookAt(ship);
+            GameObject shot = Instantiate(rocket, spawn.transform.position, alien.transform.rotation);
+            shot.transform.Rotate(90,0,0);
             WeaponWasFired();
         }
     }

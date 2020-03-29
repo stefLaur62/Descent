@@ -1,32 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class shipLife : MonoBehaviour
 {
-    private int health = 100;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private int damage = 0;
+    private int life = 0;
+    public Text dmg;
+    public Text lifen;
+    public GameObject deathCanvas;
 
-    // Update is called once per frame
     void Update()
     {
-        if (health < 1)
+        if (damage > 99)
         {
-            Destroy(gameObject);
-            //lose menu + respawn 
+            if(life == 0)
+            {
+                deathCanvas.SetActive(true);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                //anim degat 
+                life--;
+                lifen.text = life.ToString();
+                damage = 0;
+                dmg.text = damage + "%";
+            }
         }
     }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Rocket")
         {
-            health -= 20;
-
+            damage += 20;
+            dmg.text = damage + "%";
+        }
+        if (collision.gameObject.tag == "Heart")
+        {
+            life++;
+            damage = 0;
+            lifen.text = life.ToString();
+            Destroy(collision.gameObject);
         }
     }
 }

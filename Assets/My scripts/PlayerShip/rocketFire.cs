@@ -11,7 +11,7 @@ public class rocketFire : MonoBehaviour
     public GameObject left_spawn;
     public GameObject right_spawn;
 
-    private AudioSource audio;
+    private new AudioSource audio;
     public AudioClip audio2;
 
     void Start()

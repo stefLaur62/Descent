@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class Enemy1Hit : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //public AudioSource audio;
+    //public AudioClip audio2;
+
     void Start()
     {
-        
+        //audio = GetComponent<AudioSource>();
+        //audio.clip = audio2;
     }
-
-    // Update is called once per frame
-    void Update()
+    private void playSound()
     {
-        
+        //audio.Play();
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Rocket")
         {
+            //playSound();
             Destroy(gameObject);
         }
     }

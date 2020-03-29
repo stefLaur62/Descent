@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class openDoor : MonoBehaviour
 {
-    public GameObject leftDoor;
-    public GameObject rightDoor;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool isOpen;
+    public Transform end;
+    public GameObject door;
+    public new AudioSource audio;
 
-    // Update is called once per frame
+    void Update()
+    {
+        if(isOpen)
+            moveDoor();
+
+    }
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Rocket")
         {
-            //move door
-            Debug.Log("Open!");
+            if (!isOpen)
+            {
+                audio.Play();
+                isOpen = true;
+
+            }
         }
+    }
+    private void moveDoor()
+    {
+        door.transform.position = Vector3.Lerp(door.transform.position, end.position, Time.deltaTime);
     }
 }
